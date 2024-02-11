@@ -45,19 +45,19 @@
 				var systemDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 				if (isHalloween || (isSupportsSystemDarkMode ? systemDarkMode : darkMode)) {
-					$("body").addClass("dark");
+					document.querySelector("body").classList.add("dark");
 				}
 			}
 
 			function GameDetails( servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, lang, gamemodeNice )
 			{
-				$("#serverName").text( servername );
-				$("#serverMap").text( mapname );
-				$("#serverGamemode").text( gamemodeNice );
-				$("#mapimg").attr("src", "asset://mapimage/" + mapname );
-				$("body").css( "background-image", "url( 'asset://mapimage/" + mapname + "' )" );
+				document.querySelector("#serverName").textContent = servername;
+				document.querySelector("#serverMap").textContent = mapname;
+				document.querySelector("#serverGamemode").textContent = gamemodeNice;
+				document.querySelector("#mapimg").setAttribute("src", "asset://mapimage/" + mapname );
+				document.querySelector("body").setAttribute("style", "background-image: url( 'asset://mapimage/" + mapname + "' );" );
 
-				$(".server_info").addClass( "visible" );
+				document.querySelector(".server_info").classList.add( "visible" );
 
 				// Do with these what you will :)
 				// this function gets called only when joining a multiplayer server
