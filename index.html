@@ -161,7 +161,9 @@
 					Spam( e.detail.status );
 				});
 
-				SimulateDownload()
+				if (STATE.simulate) {
+					SimulateDownload();
+				}
 
 				setInterval(function(){
 					/**
