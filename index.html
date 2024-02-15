@@ -103,9 +103,17 @@
 				}
 
 				function Glam(text, blob) {
-					blob = blob || {};
-					blob.time = GetCurrentTime();
-					STATE.history.push({name:text, blob:JSON.stringify(blob)});
+					let out = {
+						name: text,
+						gunk: {
+							blob: JSON.stringify(blob),
+							time: GetCurrentTime(),
+						}
+					};
+					if (blob.detail && blob.detail.status){
+						out.status = blob.detail.status;
+					}
+					STATE.history.push(JSON.stringify(out));
 					if (blob.detail && blob.detail.status === "Lua Started!") {
 						GlamRock()
 					}
@@ -138,7 +146,7 @@
 				};
 
 				document.addEventListener("GameDetails", (e) => {
-					Glam("GameDetails", e);
+					Glam("GameDetails", e.detail );
 					document.querySelector("#serverName").textContent = e.detail.servername;
 					document.querySelector("#serverMap").textContent = e.detail.mapname;
 					document.querySelector("#serverGamemode").textContent = e.detail.gamemode;
