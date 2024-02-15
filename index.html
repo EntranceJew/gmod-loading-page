@@ -103,17 +103,12 @@
 				}
 
 				function Glam(text, blob) {
-					let out = {
+					let gunk = {};
+					Object.assign(gunk, {
 						name: text,
-						gunk: {
-							blob: JSON.stringify(blob),
-							time: GetCurrentTime(),
-						}
-					};
-					if (blob.detail && blob.detail.status){
-						out.status = blob.detail.status;
-					}
-					STATE.history.push(JSON.stringify(out));
+						time: GetCurrentTime(),
+					}, blob);
+					STATE.history.push(gunk);
 					if (blob.detail && blob.detail.status === "Lua Started!") {
 						GlamRock()
 					}
@@ -160,7 +155,7 @@
 
 					// Do with these what you will :)
 					// this function gets called only when joining a multiplayer server
-					Spam("servername: " + e.detail.servername.detail);
+					Spam("servername: " + e.detail.servername);
 					Spam("serverurl: " + e.detail.serverurl);
 					Spam("mapname: " + e.detail.mapname);
 					Spam("maxplayers: " + e.detail.maxplayers);
@@ -204,7 +199,7 @@
 
 				document.addEventListener("SetStatusChanged", (e) => {
 					Glam( "SetStatusChanged", e.detail );
-					console.log("status:", e.detail.status);
+					console.log(`status: ${e.detail.status}`);
 					Spam( e.detail.status );
 				});
 
