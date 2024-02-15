@@ -1,9 +1,9 @@
 <html>
 	<head>
 		<title>Loading..</title>
-		<link rel="stylesheet" type="text/css" href="css/loading.css?3" />
-		<link rel="stylesheet" type="text/css" href="css/hybrid.css?3" />
-		<link rel="stylesheet" type="text/css" href="css/floating_file.css?3" />
+		<link rel="stylesheet" type="text/css" href="./css/loading.css?3" />
+		<link rel="stylesheet" type="text/css" href="./css/hybrid.css?3" />
+		<link rel="stylesheet" type="text/css" href="./css/floating_file.css?3" />
 	</head>
 	<body>
 
@@ -11,7 +11,7 @@
 			<div id="floating_icons"></div>
 
 			<div id="hybrid-container">
-				<img src='img/gmod_logo_brave.png' class="bounce"/>
+				<img src='./img/gmod_logo_brave.png' class="bounce"/>
 
 				<div id="walk-zone">
 					<div id="walk">:v</div>
@@ -26,7 +26,7 @@
 			</div>
 
 			<div class="server_info">
-				<img id="mapimg" src="/img/gmod.png"/>
+				<img id="mapimg" src="./img/gmod.png"/>
 				<div class="text">
 					<span id="serverName">A really long server name will be here that will be too long to fit on the loading screen</span><br>
 					<span id="serverMap">gm_hilldirt</span><br>
@@ -34,9 +34,9 @@
 				</div>
 			</div>
 		</div>
-		<script type="module" src="js/lib.js"></script>
-		<script type="module" src="js/floating_file.js"></script>
-		<script type="module" src="js/gmod_simulate.js"></script>
+		<script type="module" src="./js/lib.js"></script>
+		<script type="module" src="./js/floating_file.js"></script>
+		<script type="module" src="./js/gmod_simulate.js"></script>
 		<script type="module">
 			import { WrapGmodEvents, SimulateDownload, IsGmod } from "./js/gmod_simulate.js";
 			import { file_map, FromHTML } from "./js/lib.js";
@@ -46,7 +46,7 @@
 			let CONFIG = {
 				FLOATING_FILE_ELEMENT: document.getElementById("floating_icons"),
 				FILE_MAP: file_map,
-				ICON_ROOT: "/img/icons/",
+				ICON_ROOT: "./img/icons/",
 				ICONS_HEIGHT: 16,
 				ICONS_WIDTH: 16,
 				MESSAGES: 15,
