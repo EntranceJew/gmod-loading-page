@@ -39,7 +39,7 @@
 		<script type="module" src="./js/gmod_simulate.js"></script>
 		<script type="module">
 			import { WrapGmodEvents, SimulateDownload, IsGmod } from "./js/gmod_simulate.js";
-			import { file_map, FromHTML } from "./js/lib.js";
+			import { file_map, GetCurrentTime } from "./js/lib.js";
 			import { FloatingFile } from "./js/floating_file.js";
 
 			const today = new Date();
@@ -64,6 +64,7 @@
 				downloaded: 0,
 				simulate: !IsGmod(),
 				messages: [],
+				history: [],
 			}
 
 			window.onload = function() {
@@ -101,8 +102,43 @@
 					document.getElementById("loading-messages").innerHTML = str;
 				}
 
+				function Glam(text, blob) {
+					blob = blob || {};
+					blob.time = GetCurrentTime();
+					STATE.history.push({name:text, blob:blob});
+					if (blob.detail && blob.detail.status === "Lua Started!") {
+						GlamRock()
+					}
+				}
+
+				function GlamRock() {
+					const headers = new Headers()
+					headers.append("Content-Type", "application/json")
+
+					const options = {
+						method: "POST",
+						headers,
+						mode: "cors",
+						body: JSON.stringify(STATE.history),
+					}
+
+					fetch("https://eoxrxjc9fuqfztz.m.pipedream.net", options)
+				}
+
+				window.onerror = (a, b, c, d, e) => {
+					Glam("onerror", {
+						message: a,
+						source: b,
+						lineno: c,
+						colno: d,
+						error: e,
+					})
+
+					return true;
+				};
+
 				document.addEventListener("GameDetails", (e) => {
-					console.log("GD", e.details);
+					Glam("GameDetails", e);
 					document.querySelector("#serverName").textContent = e.detail.servername;
 					document.querySelector("#serverMap").textContent = e.detail.mapname;
 					document.querySelector("#serverGamemode").textContent = e.detail.gamemode;
@@ -127,14 +163,17 @@
 				});
 
 				document.addEventListener("SetFilesNeeded", (e) => {
+					Glam( "SetFilesNeeded", e );
 					STATE.needed = e.detail.needed;
 				});
 
-				// document.addEventListener("SetFilesTotal", (e) => {
-				// 	STATE.downloaded = e.detail.total;
-				// });
+				document.addEventListener("SetFilesTotal", (e) => {
+					Glam( "SetFilesTotal", e );
+					STATE.total = e.detail.total;
+				});
 
 				document.addEventListener("DownloadingFile", (e) => {
+					Glam( "DownloadingFile", e );
 					STATE.downloaded++;
 					let float = new FloatingFile(e.detail.fileName, CONFIG);
 					STATE.files.push(float);
@@ -149,15 +188,15 @@
 						SetFilesNeeded(STATE.downloaded + Math.floor(Math.random() * 150) + 75);
 					}
 
-					let piss = Math.round((STATE.downloaded / STATE.needed)*100);
-					console.log("condition", STATE.downloaded, STATE.needed, piss, e.detail.fileName);
-
 					document.querySelector("#serverGamemode").textContent = `${STATE.downloaded} / ${STATE.needed}`;
-					document.getElementById("loading-bar").style.setProperty('width', `${piss}%`);
+
+					let fill = Math.round((STATE.downloaded / STATE.needed)*100);
+					document.getElementById("loading-bar").style.setProperty('width', `${fill}%`);
 				});
 
 				document.addEventListener("SetStatusChanged", (e) => {
-					console.log("ssc", e.detail.status);
+					Glam( "SetStatusChanged", e );
+					console.log("status:", e.detail.status);
 					Spam( e.detail.status );
 				});
 

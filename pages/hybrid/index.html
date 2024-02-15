@@ -150,11 +150,10 @@
 						SetFilesNeeded(STATE.downloaded + Math.floor(Math.random() * 150) + 75);
 					}
 
-					let piss = Math.round((STATE.downloaded / STATE.needed)*100);
-					console.log("condition", STATE.downloaded, STATE.needed, piss, e.detail.fileName);
-
 					document.querySelector("#serverGamemode").textContent = `${STATE.downloaded} / ${STATE.needed}`;
-					document.getElementById("loading-bar").style.setProperty('width', `${piss}%`);
+
+					let fill = Math.round((STATE.downloaded / STATE.needed)*100);
+					document.getElementById("loading-bar").style.setProperty('width', `${fill}%`);
 				});
 
 				document.addEventListener("SetStatusChanged", (e) => {
