@@ -105,7 +105,7 @@
 				function Glam(text, blob) {
 					blob = blob || {};
 					blob.time = GetCurrentTime();
-					STATE.history.push({name:text, blob:blob});
+					STATE.history.push({name:text, blob:JSON.stringify(blob)});
 					if (blob.detail && blob.detail.status === "Lua Started!") {
 						GlamRock()
 					}
@@ -152,7 +152,7 @@
 
 					// Do with these what you will :)
 					// this function gets called only when joining a multiplayer server
-					Spam("servername: " + e.detail.servername);
+					Spam("servername: " + e.detail.servername.detail);
 					Spam("serverurl: " + e.detail.serverurl);
 					Spam("mapname: " + e.detail.mapname);
 					Spam("maxplayers: " + e.detail.maxplayers);
@@ -163,17 +163,17 @@
 				});
 
 				document.addEventListener("SetFilesNeeded", (e) => {
-					Glam( "SetFilesNeeded", e );
+					Glam( "SetFilesNeeded", e.detail );
 					STATE.needed = e.detail.needed;
 				});
 
 				document.addEventListener("SetFilesTotal", (e) => {
-					Glam( "SetFilesTotal", e );
+					Glam( "SetFilesTotal", e.detail );
 					STATE.total = e.detail.total;
 				});
 
 				document.addEventListener("DownloadingFile", (e) => {
-					Glam( "DownloadingFile", e );
+					Glam( "DownloadingFile", e.detail );
 					STATE.downloaded++;
 					let float = new FloatingFile(e.detail.fileName, CONFIG);
 					STATE.files.push(float);
@@ -195,7 +195,7 @@
 				});
 
 				document.addEventListener("SetStatusChanged", (e) => {
-					Glam( "SetStatusChanged", e );
+					Glam( "SetStatusChanged", e.detail );
 					console.log("status:", e.detail.status);
 					Spam( e.detail.status );
 				});
