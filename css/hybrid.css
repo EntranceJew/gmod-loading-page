@@ -1,0 +1,133 @@
+:root {
+    --icon-width: 16px;
+    --icon-height: 16px;
+    --load-bar-edge: 3px;
+}
+
+#hybrid-container {
+    position: fixed;
+    text-align: center;
+    left: 50%;
+    top: 45%;
+    margin-top: -120px;
+    /*margin-left: -150px;*/
+
+    width: 100%;
+    transform: translateX(-50%);
+}
+
+/* walk zone */
+#walk-zone {
+    margin: calc(var(--icon-width) * 1.5px) auto;
+    width: 100%;
+}
+
+#walk {
+    -webkit-animation-name: walk;
+    -webkit-animation-duration: 10.0s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -webkit-perspective: 6000px;
+    text-align: center;
+    background-color: #fe7;
+    width: calc(var(--icon-width) * 1.5px);
+    height: calc(var(--icon-width) * 1.5px);
+    color: #999;
+    font-size: calc(var(--icon-height) * 1px);
+    font-family: Arial, serif;
+    font-weight: bold;
+    border-radius: var(--load-bar-edge);
+    display: inline-block;
+    border: 2px solid #999;
+
+    margin-top: calc(var(--icon-width) * 1.5px);
+    margin-bottom: calc(var(--icon-width) * 1.5px);
+}
+
+/* loading bar */
+#loading-bar-outer {
+    margin: auto;
+    width: 50%;
+    height: calc(var(--load-bar-edge) * 2);
+    border-radius: var(--load-bar-edge);
+}
+
+body #loading-bar-outer {
+    background-color: #666;
+}
+
+body.dark #loading-bar-outer {
+    background-color: #fff;
+}
+
+
+#loading-bar {
+    position: relative;
+    height: inherit;
+    background-color: #03a9f4;
+    border-radius: var(--load-bar-edge);
+    transition: width 0.3s linear;
+}
+
+#loading-bar:after {
+    content: '';
+    position: absolute;
+    top: calc(var(--load-bar-edge)*-1);
+    right: 0;
+    width: calc(var(--load-bar-edge)*4);
+    height: calc(var(--load-bar-edge)*4);
+    background-color: #03caf4;
+    border-radius: 50%;
+    box-shadow: 0 var(--load-bar-edge) calc(var(--load-bar-edge)*2) rgba(0, 0, 0, 0.35);
+}
+
+/* floating icons */
+#floating_icons {
+    /*text-align: center;*/
+    /*top: 30%;*/
+
+    /* TODO: this is WIP but i had a meeting */
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* loading message */
+#loading-messages {
+    text-align: center;
+
+    padding-top: 30px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    overflow: visible;
+
+    /*margin-top: 10px;*/
+    color: #666;
+    font-family: Arial,serif;
+    font-size: calc(var(--icon-height) * 1px);
+    line-height: calc(var(--icon-height) * 1px);
+    font-weight: bold;
+
+    list-style-position: inside;
+    justify-items: center;
+}
+
+#loading-messages span {
+    display: block;
+
+}
+
+body.dark #loading-messages {
+    color: hsl(0, 0%, 100%);
+}
+
+body #loading-messages {
+    color: hsl(0, 0%, 0%);
+}

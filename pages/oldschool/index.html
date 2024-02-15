@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+    <link href="data:image/png;base64,AAABAAIAICAAAAEAIACoEAAAJgAAABAQAAABACAAaAQAAM4QAAAoAAAAIAAAAEAAAAABACAAAAAAAAAQAAASCwAAEgsAAAAAAAAAAAAA////AP///wD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AP///wD///8A////AP///wAAAAAFAAAAEAAAABYAAAAWAAAAFgAAABYAAAAWAAAAFgAAABYAAAAWAAAAFgAAABYAAAAWAAAAFgAAABYAAAAWAAAAFgAAABYAAAAWAAAAFgAAABYAAAAWAAAAFgAAABYAAAAQAAAABQAAAAD///8A////AP///wD///8A////AAAAABAAAAAxAAAAQgAAAEMAAABDAAAAQwAAAEMAAABDAAAAQwAAAEMAAABDAAAAQwAAAEMAAABDAAAAQwAAAEMAAABDAAAAQwAAAEMAAABDAAAAQwAAAEMAAABDAAAAQgAAADEAAAAQAAAAAP///wD///8A////AP///wD///8AAAAAFrCwrvOvr63/rq6r/62tq/+trav/ra2r/62tq/+trav/ra2r/62tq/+trav/ra2r/62tq/+trav/ra2r/62tq/+trav/ra2r/62tq/+trav/ra2r/66uq/+vr63/sLCu8wAAABYAAAAA////AP///wD///8A////AP///wAAAAAWsLCt//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+wsK3/AAAAFgAAAAD///8A////AP///wD///8A////AAAAABaurqv////////////+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v///////////66uq/8AAAAWAAAAAP///wD///8A////AP///wD///8AAAAAFq2tq////////f39//z8/P/8/Pz//Pz8//z8/P/8/Pz//Pz8//z8/P/8/Pz//Pz8//z8/P/8/Pz//Pz8//z8/P/8/Pz//Pz8//z8/P/8/Pz//Pz8//39/f//////ra2r/wAAABYAAAAA////AP///wD///8A////AP///wAAAAAWra2r///////8/Pz/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v//Pz8//////+trav/AAAAFgAAAAD///8A////AP///wD///8A////AAAAABatrav///////v7+f/6+vn/+vr5//r6+f/6+vn/+vr5//r6+f/6+vn/+vr5//r6+f/6+vn/+vr5//r6+f/6+vn/+vr5//r6+f/6+vn/+vr5//r6+f/7+/n//////62tq/8AAAAWAAAAAP///wD///8A////AP///wD///8AAAAAFq2tq///////+vj4//n4+P/5+Pj/+fj4//n4+P/5+Pj/+fj4//n4+P/5+Pj/+fj4//n4+P/5+Pj/+fj4//n4+P/5+Pj/+fj4//n4+P/5+Pj/+fj4//r4+P//////ra2r/wAAABYAAAAA////AP///wD///8A////AP///wAAAAAWra2r///////59/f/+Pf3//j39//49/f/+Pf3//j39//49/f/+Pf3//j39//49/f/+Pf3//j39//49/f/+Pf3//j39//49/f/+Pf3//j39//49/f/+ff3//////+trav/AAAAFgAAAAD///8A////AP///wD///8A////AAAAABatrav///////b29v/29vb/9vb2//b29v/29vb/9vb2//b29v/29vb/9vb2//b29v/29vb/9vb2//b29v/29vb/9vb2//b29v/29vb/9vb2//b29v/29vb//////62tq/8AAAAWAAAAAP///wD///8A////AP///wD///8AAAAAFq2tq///////9fX0//X19P/19fT/9fX0//X19P/19fT/9fX0//X19P/19fT/9fX0//X19P/19fT/9fX0//X19P/19fT/9fX0//X19P/19fT/9fX0//X19P//////ra2r/wAAABYAAAAA////AP///wD///8A////AP///wAAAAAWra2r///////09PP/9PTz//T08//09PP/9PTz//T08//09PP/9PTz//T08//09PP/9PTz//T08//09PP/9PTz//T08//09PP/9PTz//T08//09PP/9PTz//////+trav/AAAAFgAAAAD///8A////AP///wD///8A////AAAAABatrav///////Py8v/z8vL/8/Ly//Py8v/z8vL/8/Ly//Py8v/z8vL/8/Ly//Py8v/z8vL/8/Ly//Py8v/z8vL/8/Ly//Py8v/z8vL/8/Ly//Py8v/z8vL//////62tq/8AAAAWAAAAAP///wD///8A////AP///wD///8AAAAAFq2tq///////8vHx//Lx8f/y8fH/8vHx//Lx8f/y8fH/8vHx//Lx8f/y8fH/8vHx//Lx8f/y8fH/8vHx//Lx8f/y8fH/8vHx//Lx8f/y8fH/8vHx//Lx8f//////ra2r/wAAABYAAAAA////AP///wD///8A////AP///wAAAAAWra2r///////x8O//8fDv//Hw7//x8O//8fDv//Hw7//x8O//8fDv//Hw7//x8O//8fDv//Hw7//x8O//8fDv//Hw7//x8O//8fDv//Hw7//x8O//8fDv//////+trav/AAAAFgAAAAD///8A////AP///wD///8A////AAAAABatrav//////+7v7v/v7+7/7+/u/+/v7v/v7+7/7+/u/+/v7v/v7+7/7+/u/+/v7v/v7+7/7+/u/+/v7v/v7+7/7+/u/+/v7v/v7+7/7+/u/+/v7v/u7+7//////62tq/8AAAAWAAAAAP///wD///8A////AP///wD///8AAAAAFq2tq///////7e7s/+7u7f/u7u3/7u7t/+7u7f/u7u3/7u7t/+7u7f/u7u3/7u7t/+7u7f/u7u3/7u7t/+7u7f/u7u3/7u7t/+7u7f/u7u3/7u7t/+3u7P//////ra2r/wAAABYAAAAA////AP///wD///8A////AP///wAAAAAWra2r///////s6+v/7ezs/+3s7P/t7Oz/7ezs/+3s7P/t7Oz/7ezs/+3s7P/t7Oz/7ezs/+3s7P/t7Oz/7ezs/+3s7P/t7Oz/7ezs/+3s7P/t7Oz/7Ovr//////+trav/AAAAFgAAAAD///8A////AP///wD///8A////AAAAABatrav//////+vq6v/s6+v/7Ovr/+zr6//s6+v/7Ovr/+zr6//s6+v/7Ovr/+zr6//s6+v/7Ovr/+zr6//s6+v/7Ovr/+zr6//s6+v/7Ovr/+vq6v/r6ur//////62tq/8AAAAWAAAAAP///wD///8A////AP///wD///8AAAAAFq2tq///////6uno/+vq6f/r6un/6+rp/+vq6f/r6un/6+rp/+vq6f/r6un/6+rp/+vq6f/r6un/6+rp/+rp6P/q6ef/6unn/+rp6P/q6ej/6ejn/+no5///////ra2r/wAAABYAAAAA////AP///wD///8A////AP///wAAAAAWra2r///////p6Of/6uno/+rp6P/q6ej/6uno/+rp6P/q6ej/6uno/+rp6P/q6ej/6uno/+rp6P/p6Of/9PLz//////////////////////////////////////+urqv/AAAAFQAAAAD///8A////AP///wD///8A////AAAAABatrav//////+fn5v/o6Of/6Ojn/+jo5//o6Of/6Ojn/+jo5//o6Of/6Ojn/+jo5//o6Of/6Ojn/+bn5f//////y8vK/6enpP+np6X/p6el/6enpP+lpaL//////6+vrf8AAAANAAAAAP///wD///8A////AP///wD///8AAAAAFq6uq///////5ubl/+fn5v/n5+b/5+fm/+fn5v/n5+b/5+fm/+fn5v/n5+b/5+fm/+fn5v/n5+b/5ebk//////+np6T///////v8/P/29fX/7+7t///////p6en/qamnswAAAAQAAAAA////AP///wD///8A////AP///wAAAAAWrq6r///////k4+L/5uXk/+bl5P/m5eT/5uXk/+bl5P/m5eT/5uXk/+bl5P/m5eT/5uXk/+bl5P/k4+L//////6enpf/7/Pz/8/Ly/+vq6f//////5+fn/6iopa4AAAADAAAAAAAAAAD///8A////AP///wD///8A////AAAAABaurqv//////+Pi4f/l5OP/5eTj/+Xk4//l5OP/5eTj/+Xk4//l5OP/5eTj/+Xk4//l5OP/5eTj/+Pi4f//////p6el//b19f/r6un//////+bm5v+np6SuAAAAAwAAAAAAAAAAAAAAAP///wD///8A////AP///wD///8AAAAAFq6uq///////4uHg/+Pi4f/k4+L/5OPi/+Tj4v/k4+L/5OPi/+Tj4v/k4+L/5OPi/+Tj4v/j4uH/4uHg//////+np6T/7+7t///////m5ub/p6ekrgAAAAMAAAAAAAAAAAAAAAAAAAAA////AP///wD///8A////AP///wAAAAAVrq6s///////g397/4eDf/+Hg3//h4N//4eDf/+Hg3//h4N//4eDf/+Hg3//h4N//4eDf/+Hg3//g397//////6Wlo///////5+fn/6enpK4AAAADAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AAAAAA2vr63//////////////////////////////////////////////////////////////////////////////////////+np6f+np6WuAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///wD///8A////AP///wD///8AAAAABK+vrbSwsK3/rq6s/66uq/+urqv/rq6r/66uq/+urqv/rq6r/66uq/+urqv/rq6r/66uq/+urqv/ra6r/66uq/+vr63/rKyqsAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP/////gAAAH4AAAB+AAAAfgAAAH4AAAB+AAAAfgAAAH4AAAB+AAAAfgAAAH4AAAB+AAAAfgAAAH4AAAB+AAAAfgAAAH4AAAB+AAAAfgAAAH4AAAB+AAAAfgAAAH4AAAB+AAAAfgAAAP4AAAH+AAAD/gAAB/4AAA/+AAAf//////KAAAABAAAAAgAAAAAQAgAAAAAAAABAAAEgsAABILAAAAAAAAAAAAAP///wAAAAAjAAAAMwAAADMAAAAzAAAAMwAAADMAAAAzAAAAMwAAADMAAAAzAAAAMwAAADMAAAAj////AP///wD///8ApKSiwK+vrf+urqv/ra2r/62tq/+trav/ra2r/62tq/+trav/ra2r/66uq/+vr63/pKSiwP///wD///8A////ALCwrf///////////////////////////////////////////////////////////7Cwrf////8A////AP///wCurqv///////39/f/8/P3//Pz9//z8/f/8/P3//Pz9//z8/f/8/P3//f39//////+urqv/////AP///wD///8Ara2r///////6+Pj/+fj4//n4+P/5+Pj/+fj4//n4+P/5+Pj/+fj4//r4+P//////ra2r/////wD///8A////AK2tq///////9vb2//b29v/29vb/9vb2//b29v/29vb/9vb2//b29v/29vb//////62tq/////8A////AP///wCtrav///////T08//09PP/9PTz//T08//09PP/9PTz//T08//09PP/9PTz//////+trav/////AP///wD///8Ara2r///////y8fD/8vHw//Lx8P/y8fD/8vHw//Lx8P/y8fD/8vHw//Lx8P//////ra2r/////wD///8A////AK2tq///////7+/u/+/v7v/v7+7/7+/u/+/v7v/v7+7/7+/u/+7u7f/u7u3//////62tq/////8A////AP///wCtrav//////+zr6v/t7Ov/7ezr/+3s6//t7Ov/7Ovq/+zr6f/r6un/6+rp//////+trav/////AP///wD///8Ara2r///////p6ej/6urp/+rq6f/q6un/6eno//P08v//////////////////////rq6r/////wD///8A////AK2uq///////5+Xk/+jn5v/o5+b/6Ofm/+fl5P//////y8vK/6enpP+lpaP//////6+vrf////8A////AP///wCurqv//////+Pj4v/k5OP/5OXk/+Tk4//j4+L//////6enpP/r6+r//////+np6f+wsK6s////AP///wD///8Arq6s///////g397/4d/e/+Hg3//h397/4N/e//////+lpaP//////+jo6P+vr6ynAAAAAP///wD///8A////AK+vrf///////////////////////////////////////////+np6f+urqymAAAAAAAAAAD///8A////AP///wCzs7HvsLCt/66urP+urqv/rq6r/66uq/+trqv/rq6r/6+vrf+wsK7qAAAAAAAAAAAAAAAA////AP///wCAAwAAgAMAAIADAACAAwAAgAMAAIADAACAAwAAgAMAAIADAACAAwAAgAMAAIADAACAAwAAgAcAAIAPAACAHwAA"
+          rel="shortcut icon"
+          type="image/x-icon">
+    <style>
+        @import url(../../css/floating_file.css);
+    </style>
+    <style>
+        body {
+            overflow: hidden;
+            background-color: rgb(255, 255, 255);
+            /*background-image: url("background.png");*/
+            height: 100vh;
+            width: 100vw;
+            background-size: cover;
+        }
+
+        #infos {
+            text-align: center;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            font-family: Arial,serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(0, 0, 0);
+        }
+
+        #files {
+            text-align: center;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 50px;
+            overflow: visible;
+            font-family: Arial,serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #888;
+        }
+
+        #spandiv {
+            height: 20px;
+        }
+
+        #floating_debug {
+            position: absolute;
+        }
+
+        #icons_box {
+            top: 100px;
+            margin: 0 auto;
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon {
+            float: left;
+            width: var(--icon-width);
+            height: var(--icon-height);
+            padding: 1px 2px 0 0;
+        }
+
+        #centerfold {
+            text-align: center;
+        }
+
+        #centerfold_spacer {
+            padding-top: 30px;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 50%;
+            height: 50%;
+            margin: auto;
+            overflow: visible;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="infos">
+</div>
+
+<div id="files">
+</div>
+
+<div id="spandiv"></div>
+
+<span id="floating_debug"></span>
+
+<div id="icons_box">
+</div>
+
+<div id="centerfold">
+    <div id="centerfold_spacer">
+        <img id="mainimage" src="../../img/gmod.png" alt="logo">
+        <div id="loadingtext">
+            <span>Feeding Birds</span><br>
+        </div>
+    </div>
+</div>
+<script type="module" src="../../js/lib.js"></script>
+<script type="module" src="../../js/floating_file.js"></script>
+<script type="module">
+    import { file_map, PickRandomProperty } from "../../js/lib.js";
+    import { FloatingFile } from "../../js/floating_file.js";
+
+    const groupParamsByKey = (params) => [...params.entries()].reduce((acc, tuple) => {
+        // getting the key and value from each tuple
+        const [key, val] = tuple;
+        if(acc.hasOwnProperty(key)) {
+            // if the current key is already an array, we'll add the value to it
+            if(Array.isArray(acc[key])) {
+                acc[key] = [...acc[key], val]
+            } else {
+                // if it's not an array, but contains a value, we'll convert it into an array
+                // and add the current value to it
+                acc[key] = [acc[key], val];
+            }
+        } else {
+            // plain assignment if no special case is present
+            acc[key] = val;
+        }
+
+        return acc;
+    }, {});
+
+    let QUERY = groupParamsByKey(new URLSearchParams(window.location.search));
+
+    // let otherstr = 'abc=foo&def=%5Basf%5D&xyz=5&def=dude'
+    // const output = groupParamsByKey(params) // {abc: "foo", def: ["[asf]", "dude"], xyz: 5}
+
+    let out = {}
+    let terse = {
+        s: false,
+        iW: 32,
+        iH: 32,
+
+        f: true,
+        dF: false,
+
+        b: false,
+        bR: 60,
+        bL: 1,
+        bA: false,
+
+        m: 18,
+        rMD: 15,
+
+        bkD: false,
+        bkI: "background.png",
+        bkP: "",
+        bkS: "",
+        bkRe: "",
+        bkR: 255,
+        bkG: 255,
+        bkB: 255,
+
+        l: "gmod.png",
+    }
+    Object.assign(out, terse, QUERY)
+
+    //  ------------------------------------- //
+    // _GET Section Start
+    let STATE = {
+        iconArray: [],
+        iconIncrement: 0,
+        time: 0,
+        files: [],
+    };
+
+    // TODO: temporary patch, please remove
+    function S_GET(key){
+        return out[key];
+    }
+
+    let CONFIG = {
+        SIMULATE: S_GET("s"),
+        ICONS_WIDTH: Number(S_GET("iW") || 32),
+        ICONS_HEIGHT: Number(S_GET("iH") || 32),
+        FLOATING_ICONS: S_GET("f") || true,
+        DEBUG_FLOATING: S_GET("dF"),
+        // Icons Box:
+        // ------------
+
+        // Icons poping in a box
+        ICONS_BOX: S_GET("b"),
+        // Number of icons per line
+        ROWS: Number(S_GET("bR") || 60),
+        // Number of lines
+        LINES: Number(S_GET("bL") || 1),
+        // Plays audio when a download starts
+        AUDIO: S_GET("bA"),
+
+        // Messages:
+        // ------------
+
+        // Number of messages that we can see bellow the GMod logo
+        MESSAGES: Number(S_GET("m") || 18),
+        // Random messages will appear after this time, but it allways goes back to 0 when a new download starts
+        SECONDS_FOR_RANDOM_MESSAGES: Number(S_GET("rMD") || 15),
+
+        // Background:
+        // ------------
+
+        // Dark mode
+        DARK_MODE: S_GET("bkD"),
+        // CSS background Properties
+        BK_IMAGE: (S_GET("bkD") && "background_dark.png") || "background.png",
+        BK_POSITION: String(S_GET("bkP") || ""),
+        BK_SIZE: String(S_GET("bkS") || ""),
+        BK_REPEAT: String(S_GET("bkRe") || ""),
+        BK_COLOR_R: Number(S_GET("bkR") || 255),
+        BK_COLOR_G: Number(S_GET("bkG") || 255),
+        BK_COLOR_B: Number(S_GET("bkB") || 255),
+
+        LOGO: String(S_GET("l") || "gmod.png"),
+
+        // no query match
+        ICON_ROOT: "/img/icons/",
+        FLOATING_FILE_ELEMENT: document.getElementById("floating_icons"),
+        FILE_MAP: file_map,
+    }
+
+    const root = document.querySelector(":root");
+    root.style.setProperty('--icon-width', `${CONFIG.ICONS_WIDTH}`);
+    root.style.setProperty('--icon-height', `${CONFIG.ICONS_HEIGHT}`);
+    root.style.setProperty('--load-bar-edge', `3px`);
+
+    // _GET Section End
+    //  ------------------------------------- //
+
+
+    const keywords = [
+        "Unwelding Boxes",
+        "Charging Toolgun",
+        "Breaking Addons",
+        "Stuffing Ragdolls",
+        "Loading JBMod",
+        "Refuelling Thrusters",
+        "Unknotting ropes",
+        "Painting Barrels",
+        "Feeding Birds",
+        "Bathing Father Grigori",
+        "Decoding Lua's syntax",
+        "Re-killing Alyx",
+        "Calibrating Manhacks",
+        "Cleaning Leafblower",
+        "Reconfiguring Gravity Matrix",
+        "Growing Watermelons",
+        "Mowing Grass",
+        "Plastering Walls",
+        "Inflating Balloons",
+        "Awaiting City17's orders",
+        "Looking for crowbar",
+        "Unfreezing The Freeman",
+        "Patching Broken Update",
+        "Styling Mossman's Hair",
+        "Reducing lifespan of G-Man",
+        "Polishing Kleiner's Head",
+        "Delaying Half-Life 3",
+        "Changing Physgun Batteries",
+        "Breaking Source Engine"
+    ];
+
+
+    const audio = [];
+    audio[0] = new Audio('push.wav');
+    audio[1] = new Audio('push.wav');
+    audio[2] = new Audio('push.wav');
+    audio[3] = new Audio('push.wav');
+    audio[4] = new Audio('push.wav');
+    audio[5] = new Audio('push.wav');
+    audio[6] = new Audio('push.wav');
+    let audioIncrement = 1;
+
+    const msg = [];
+
+    let FilesNeeded;
+    let FilesTotal;
+    let RunningWorkshop = true;
+    let Downloading = false;
+
+
+    // >STYLE<
+    // ----------------------------------------------------------------------------------
+    // Title ----------------------------------------------------------------------------
+
+    document.getElementById("infos").style.setProperty('color', CONFIG.DARK_MODE && "#fff" || "#000");
+
+    // ----------------------------------------------------------------------------------
+    // Logo -----------------------------------------------------------------------------
+
+    document.getElementById("mainimage").src = CONFIG.LOGO;
+
+    // ----------------------------------------------------------------------------------
+    // Background -----------------------------------------------------------------------
+
+    document.body.style.setProperty('background-color', "rgb(" + CONFIG.BK_COLOR_R + "," + CONFIG.BK_COLOR_G + "," + CONFIG.BK_COLOR_B + ")");
+    // if (CONFIG.DARK_MODE) {
+        document.body.style.setProperty('background-image', "url('" + CONFIG.BK_IMAGE + "')");
+    // }
+    document.body.style.setProperty('background-position', CONFIG.BK_POSITION);
+    document.body.style.setProperty('background-size', CONFIG.BK_SIZE);
+    document.body.style.setProperty('background-repeat', CONFIG.BK_REPEAT);
+
+    // ----------------------------------------------------------------------------------
+    // Simulator ------------------------------------------------------------------------
+
+
+
+
+
+
+    // ----------------------------------------------------------------------------------
+    // Icons Box ------------------------------------------------------------------------
+
+    if (CONFIG.ICONS_BOX) {
+        document.getElementById("icons_box").style.setProperty('height', CONFIG.ICONS_HEIGHT * CONFIG.LINES + CONFIG.LINES + 'px');
+        document.getElementById("icons_box").style.setProperty('width', CONFIG.ICONS_WIDTH * CONFIG.ROWS + CONFIG.ROWS * 2 + 'px');
+
+        let iconLimit = CONFIG.LINES * CONFIG.ROWS;
+    }
+
+    function FileListing(filename) {
+        return;
+        let iconID = `icon${STATE.iconIncrement}`;
+        let extension = GetExtension(filename, 3);
+
+        if (!(extension in ext)) {
+            extension = "generic";
+        }
+        let icon = CONFIG.ICON_ROOT + file_map[extension];
+
+        if (STATE.iconIncrement >= iconLimit) {
+            STATE.iconArray.shift();
+        }
+
+        STATE.iconArray.push(`<img alt="${iconID}" id="${iconID}" class="icon" src="${icon}" alt="${extension}"/>`);
+
+        const iconsCount = (STATE.iconIncrement >= iconLimit) ? iconLimit - 1 : STATE.iconIncrement;
+        let currentIcons = "";
+        for (let i = 0; i <= iconsCount; i++) {
+            currentIcons = STATE.iconArray[i] + currentIcons;
+        }
+
+        document.getElementById("icons_box").innerHTML = currentIcons;
+
+        document.getElementById(iconID).style.height = '0px';
+        document.getElementById(iconID).style.width = '0px';
+        document.getElementById(iconID).animate({height: CONFIG.ICONS_HEIGHT + "px", width: CONFIG.ICONS_WIDTH + "px"});
+
+        STATE.iconIncrement++;
+
+        if (CONFIG.AUDIO) {
+            let playPromise = audio[audioIncrement].play();
+            if (playPromise !== null){
+                playPromise.catch(() => function() {})
+            }
+
+            audioIncrement++;
+
+            if (audioIncrement === 7)
+                audioIncrement = 0;
+        }
+    }
+
+    // ----------------------------------------------------------------------------------
+    // Floating Icons -------------------------------------------------------------------
+
+    if (CONFIG.DEBUG_FLOATING) {
+        let file = ".dbg";
+        let float = new FloatingFile(file, CONFIG);
+        STATE.files.push(float);
+        FileListing(file);
+    }
+
+
+    // ----------------------------------------------------------------------------------
+    // Change Text ----------------------------------------------------------------------
+
+
+
+    function ChangeText() {
+        setTimeout(function () {
+            STATE.time++;
+
+            if (STATE.time > CONFIG.SECONDS_FOR_RANDOM_MESSAGES) {
+                const keyword = keywords[Math.floor(Math.random() * keywords.length)];
+                UpdateText(keyword);
+                STATE.time = 0;
+            }
+
+            ChangeText();
+        }, 1000);
+    }
+
+    function RefreshFileBox(text) {
+        if (!isNaN(FilesTotal)) {
+            if (FilesNeeded === 0 || isNaN(FilesNeeded))
+                FilesNeeded = "( ͡° ͜ʖ ͡°) 0";
+
+            document.getElementById("files").innerHTML = text || FilesNeeded + " files needed";
+        }
+    }
+
+    // FloatingFileThink
+    setInterval(function(){
+        /**
+         * @param {FloatingFile} value
+         */
+        STATE.files.forEach((value, index, array) => {
+            value.Think();
+        })
+    }, 0.1);
+
+    // ----------------------------------------------------------------------------------
+    // GMod Functions -------------------------------------------------------------------
+
+    // noinspection JSUnusedGlobalSymbols,JSUnusedLocalSymbols
+    function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode) {
+        document.getElementById("infos").innerText = servername;
+    }
+
+    // noinspection JSUnusedGlobalSymbols
+    function SetFilesNeeded(Needed) {
+        FilesNeeded = Needed;
+        RefreshFileBox();
+    }
+
+    // noinspection JSUnusedGlobalSymbols
+    function SetFilesTotal(iTotal) {
+        FilesTotal = iTotal;
+        RefreshFileBox();
+    }
+
+    // noinspection JSUnusedGlobalSymbols
+    function DownloadingFile(filename) {
+        FilesNeeded--;
+
+        RefreshFileBox();
+
+        UpdateText("Downloading " + filename);
+
+        STATE.time = 0;
+
+        if (RunningWorkshop)
+            filename = filename + ".wdo";
+
+        if (Downloading) {
+            if (CONFIG.ICONS_BOX)
+                FileListing(Downloading);
+
+            Downloading = false;
+        }
+
+        Downloading = filename;
+
+        if (CONFIG.FLOATING_ICONS)
+            SetFloatingIcon(filename);
+    }
+
+    // noinspection JSUnusedGlobalSymbols
+    function SetStatusChanged(status) {
+        if (status === "Mounting Addons")
+            RunningWorkshop = false;
+
+        if (status === "Received all Lua files we needed!")
+            RefreshFileBox(keywords[Math.floor(Math.random() * keywords.length)]);
+
+        if (Downloading) {
+            if (CONFIG.ICONS_BOX)
+                FileListing(Downloading);
+
+            Downloading = false;
+        }
+
+        if (RunningWorkshop) {
+            FilesNeeded--;
+
+            RefreshFileBox();
+
+            const id = status + ".wlo";
+
+            Downloading = id;
+
+            if (CONFIG.FLOATING_ICONS)
+                SetFloatingIcon(id);
+
+            status = status.replace(/\d.*?-/g, ''); // Remove the counting and total size
+        }
+
+        UpdateText(status);
+        STATE.time = 0;
+    }
+
+    ChangeText();
+</script>
+
+</body>
+</html>

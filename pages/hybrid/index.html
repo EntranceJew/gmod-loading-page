@@ -1,0 +1,178 @@
+<html>
+	<head>
+		<title>Loading..</title>
+		<link rel="stylesheet" type="text/css" href="../../css/loading.css?3" />
+		<link rel="stylesheet" type="text/css" href="../../css/hybrid.css?3" />
+		<link rel="stylesheet" type="text/css" href="../../css/floating_file.css?3" />
+	</head>
+	<body>
+
+		<div id="background">
+			<div id="floating_icons"></div>
+
+			<div id="hybrid-container">
+				<img src='../../img/gmod_logo_brave.png' class="bounce"/>
+
+				<div id="walk-zone">
+					<div id="walk">:v</div>
+				</div>
+
+				<div id="loading-bar-outer">
+					<div id="loading-bar"></div>
+				</div>
+
+				<ul id="loading-messages">
+				</ul>
+			</div>
+
+			<div class="server_info">
+				<img id="mapimg" src="/img/gmod.png"/>
+				<div class="text">
+					<span id="serverName">A really long server name will be here that will be too long to fit on the loading screen</span><br>
+					<span id="serverMap">gm_hilldirt</span><br>
+					<span id="serverGamemode">Snadbox</span>
+				</div>
+			</div>
+		</div>
+		<script type="module" src="../../js/lib.js"></script>
+		<script type="module" src="../../js/floating_file.js"></script>
+		<script type="module" src="../../js/gmod_simulate.js"></script>
+		<script type="module">
+			import { WrapGmodEvents, SimulateDownload, IsGmod } from "../../js/gmod_simulate.js";
+			import { file_map, FromHTML } from "../../js/lib.js";
+			import { FloatingFile } from "../../js/floating_file.js";
+
+			const today = new Date();
+			let CONFIG = {
+				FLOATING_FILE_ELEMENT: document.getElementById("floating_icons"),
+				FILE_MAP: file_map,
+				ICON_ROOT: "/img/icons/",
+				ICONS_HEIGHT: 16,
+				ICONS_WIDTH: 16,
+				MESSAGES: 15,
+
+				IS_HALLOWEEN: today.getMonth() === 10 && today.getDate() >= 15 || today.getMonth() === 11 && today.getDate() <= 5,
+				IS_DARK: today.getHours() >= 19 || today.getHours() <= 7,
+				SUPPORT_SYSTEM_DARK: navigator.userAgent.match(/Chrome\/(\d+)/)[1] >= 76,
+				SYSTEM_DARK: false, //window.matchMedia('(prefers-color-scheme: dark)').matches,
+			}
+
+			let STATE = {
+				files: [],
+				needed: 0,
+				total: 0,
+				downloaded: 0,
+				simulate: !IsGmod(),
+				messages: [],
+			}
+
+			window.onload = function() {
+				const root = document.querySelector(":root");
+				root.style.setProperty('--icon-width', `${CONFIG.ICONS_WIDTH}`);
+				root.style.setProperty('--icon-height', `${CONFIG.ICONS_HEIGHT}`);
+				root.style.setProperty('--load-bar-edge', `3px`);
+
+				WrapGmodEvents();
+
+				if (CONFIG.IS_HALLOWEEN || (CONFIG.SUPPORT_SYSTEM_DARK ? CONFIG.SYSTEM_DARK : CONFIG.IS_DARK)) {
+					document.querySelector("body").classList.add("dark");
+				}
+
+				// function Spam(dat){
+				// 	document.getElementById("loading-messages").prepend(...FromHTML(`<span>${dat}</span>`));
+				// }
+				function Spam(text, icon) {
+					STATE.messages.push({
+						text: text,
+						icon: icon ? icon : `${CONFIG.ICON_ROOT}information.png`,
+					},);
+
+					let str = "";
+					const limit = Math.max(STATE.messages.length - CONFIG.MESSAGES, 0);
+
+					let j = 0;
+					for (let i = STATE.messages.length; i >= limit; i--) {
+						let msg = STATE.messages[i];
+						if (!msg) continue;
+						str = str + `<li style='opacity: ${(1 - j / CONFIG.MESSAGES)}; list-style-image: ${msg.icon ? "url(\""+ msg.icon +"\")" : "none"};'> ${msg.text} </li>`;
+						j++;
+					}
+
+					document.getElementById("loading-messages").innerHTML = str;
+				}
+
+				document.addEventListener("GameDetails", (e) => {
+					console.log("GD", e.details);
+					document.querySelector("#serverName").textContent = e.detail.servername;
+					document.querySelector("#serverMap").textContent = e.detail.mapname;
+					document.querySelector("#serverGamemode").textContent = e.detail.gamemode;
+					if (IsGmod()) {
+						let uri = `asset://mapimage/${e.detail.mapname}`;
+						document.querySelector("#mapimg").setAttribute("src", uri);
+						document.querySelector("body").setAttribute("style", `"background-image: url( '${uri}' );"` );
+					}
+
+					document.querySelector(".server_info").classList.add( "visible" );
+
+					// Do with these what you will :)
+					// this function gets called only when joining a multiplayer server
+					Spam("servername: " + e.detail.servername);
+					Spam("serverurl: " + e.detail.serverurl);
+					Spam("mapname: " + e.detail.mapname);
+					Spam("maxplayers: " + e.detail.maxplayers);
+					Spam("steamid: " + e.detail.steamid);
+					Spam("gamemode: " + e.detail.gamemode);
+					Spam("volume: " + e.detail.volume);
+					Spam("lang: " + e.detail.language);
+				});
+
+				document.addEventListener("SetFilesNeeded", (e) => {
+					STATE.needed = e.detail.needed;
+				});
+
+				// document.addEventListener("SetFilesTotal", (e) => {
+				// 	STATE.downloaded = e.detail.total;
+				// });
+
+				document.addEventListener("DownloadingFile", (e) => {
+					STATE.downloaded++;
+					let float = new FloatingFile(e.detail.fileName, CONFIG);
+					STATE.files.push(float);
+					Spam( e.detail.fileName, `${float.imageUri}` );
+
+					if (!STATE.simulate && (STATE.needed <= 0 || STATE.downloaded >= STATE.needed)) {
+						console.log('wacky state', STATE.needed, STATE.downloaded)
+						SetFilesNeeded(STATE.downloaded + 1);
+					}
+					if (STATE.simulate && (STATE.needed <= 0 || STATE.downloaded >= STATE.needed)) {
+						console.log('wacky state', STATE.needed, STATE.downloaded)
+						SetFilesNeeded(STATE.downloaded + Math.floor(Math.random() * 150) + 75);
+					}
+
+					let piss = Math.round((STATE.downloaded / STATE.needed)*100);
+					console.log("condition", STATE.downloaded, STATE.needed, piss, e.detail.fileName);
+
+					document.querySelector("#serverGamemode").textContent = `${STATE.downloaded} / ${STATE.needed}`;
+					document.getElementById("loading-bar").style.setProperty('width', `${piss}%`);
+				});
+
+				document.addEventListener("SetStatusChanged", (e) => {
+					console.log("ssc", e.detail.status);
+					Spam( e.detail.status );
+				});
+
+				SimulateDownload()
+
+				setInterval(function(){
+					/**
+					 * @param {FloatingFile} value
+					 */
+					STATE.files.forEach((value, index, array) => {
+						value.Think();
+					})
+				}, 0.1);
+			}
+		</script>
+
+	</body>
+</html>
