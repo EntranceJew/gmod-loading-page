@@ -118,14 +118,17 @@
 					const headers = new Headers()
 					headers.append("Content-Type", "application/json")
 
+					let bod = JSON.stringify(STATE.history)
 					const options = {
 						method: "POST",
 						headers,
 						mode: "cors",
-						body: JSON.stringify(STATE.history),
+						body: bod,
 					}
 
-					fetch("https://eoxrxjc9fuqfztz.m.pipedream.net", options)
+					console.log(bod)
+
+					fetch("https://www.toptal.com/developers/postbin/1707974024208-0976146520115", options)
 				}
 
 				window.onerror = (a, b, c, d, e) => {
