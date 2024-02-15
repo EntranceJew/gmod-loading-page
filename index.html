@@ -39,7 +39,7 @@
 		<script type="module" src="./js/gmod_simulate.js"></script>
 		<script type="module">
 			import { WrapGmodEvents, SimulateDownload, IsGmod } from "./js/gmod_simulate.js";
-			import { file_map, GetCurrentTime } from "./js/lib.js";
+			import { file_map } from "./js/lib.js";
 			import { FloatingFile } from "./js/floating_file.js";
 
 			const today = new Date();
@@ -71,6 +71,7 @@
 			// 	document.getElementById("loading-messages").prepend(...FromHTML(`<span>${dat}</span>`));
 			// }
 			window.Spam = function(text, icon) {
+				console.log(`spam: ${text}`);
 				STATE.messages.push({
 					text: text,
 					icon: icon ? icon : `${CONFIG.ICON_ROOT}information.png`,
@@ -90,35 +91,6 @@
 				document.getElementById("loading-messages").innerHTML = str;
 			}
 
-			window.Glam = function(text, blob) {
-				let gunk = {};
-				Object.assign(gunk, {
-					name: text,
-					time: GetCurrentTime(),
-				}, blob);
-				STATE.history.push(gunk);
-				if (blob && blob.detail && blob.detail.status === "Lua Started!") {
-					GlamRock()
-				}
-			}
-
-			window.GlamRock = function() {
-				const headers = new Headers()
-				headers.append("Content-Type", "application/json")
-
-				let bod = JSON.stringify(STATE.history)
-				const options = {
-					method: "POST",
-					headers,
-					mode: "cors",
-					body: bod,
-				}
-
-				console.log(bod)
-
-				fetch("https://www.toptal.com/developers/postbin/1707974024208-0976146520115", options)
-			}
-
 			window.onload = function() {
 				const root = document.querySelector(":root");
 				root.style.setProperty('--icon-width', `${CONFIG.ICONS_WIDTH}`);
@@ -131,22 +103,7 @@
 					document.querySelector("body").classList.add("dark");
 				}
 
-
-
-				window.onerror = (a, b, c, d, e) => {
-					Glam("onerror", {
-						message: a,
-						source: b,
-						lineno: c,
-						colno: d,
-						error: e,
-					})
-
-					return true;
-				};
-
 				document.addEventListener("GameDetails", (e) => {
-					Glam("GameDetails", e.detail );
 					document.querySelector("#serverName").textContent = e.detail.servername;
 					document.querySelector("#serverMap").textContent = e.detail.mapname;
 					document.querySelector("#serverGamemode").textContent = e.detail.gamemode;
@@ -171,17 +128,16 @@
 				});
 
 				document.addEventListener("SetFilesNeeded", (e) => {
-					Glam( "SetFilesNeeded", e.detail );
+					Spam( `SetFilesNeeded: ${e.detail.needed}` );
 					STATE.needed = e.detail.needed;
 				});
 
 				document.addEventListener("SetFilesTotal", (e) => {
-					Glam( "SetFilesTotal", e.detail );
+					Spam( `SetFilesTotal: ${e.detail.total}` );
 					STATE.total = e.detail.total;
 				});
 
 				document.addEventListener("DownloadingFile", (e) => {
-					Glam( "DownloadingFile", e.detail );
 					STATE.downloaded++;
 					let float = new FloatingFile(e.detail.fileName, CONFIG);
 					STATE.files.push(float);
@@ -203,9 +159,7 @@
 				});
 
 				document.addEventListener("SetStatusChanged", (e) => {
-					console.log(`zatus e: ${e.detail.status}`);
 					Spam( e.detail.status );
-					Glam( "SetStatusChanged", {status: e.detail.status} );
 				});
 
 				if (STATE.simulate) {
