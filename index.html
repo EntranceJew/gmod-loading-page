@@ -201,7 +201,7 @@
 				});
 
 				document.addEventListener("SetStatusChanged", (e) => {
-					console.log(`zatus: ${e.detail.status}`);
+					console.log(`zatus e: ${e.detail.status}`);
 					Spam( e.detail.status );
 					Glam( "SetStatusChanged", {status: e.detail.status} );
 				});
