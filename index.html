@@ -1,4 +1,4 @@
-<html>
+<html lang="">
 	<head>
 		<title>Loading..</title>
 		<link rel="stylesheet" type="text/css" href="./css/loading.css?3" />
@@ -11,7 +11,7 @@
 			<div id="floating_icons"></div>
 
 			<div id="hybrid-container">
-				<img src='./img/gmod_logo_brave.png' class="bounce"/>
+				<img src='./img/gmod_logo_brave.png' alt="gmod logo" class="bounce"/>
 
 				<div id="walk-zone">
 					<div id="walk">:v</div>
@@ -26,7 +26,7 @@
 			</div>
 
 			<div class="server_info">
-				<img id="mapimg" src="./img/gmod.png"/>
+				<img id="mapimg" alt="map icon" src="./img/gmod.png"/>
 				<div class="text">
 					<span id="serverName">A really long server name will be here that will be too long to fit on the loading screen</span><br>
 					<span id="serverMap">gm_hilldirt</span><br>
@@ -117,6 +117,7 @@
 
 					// Do with these what you will :)
 					// this function gets called only when joining a multiplayer server
+					/*
 					Spam("servername: " + e.detail.servername);
 					Spam("serverurl: " + e.detail.serverurl);
 					Spam("mapname: " + e.detail.mapname);
@@ -125,6 +126,7 @@
 					Spam("gamemode: " + e.detail.gamemode);
 					Spam("volume: " + e.detail.volume);
 					Spam("lang: " + e.detail.language);
+					*/
 				});
 
 				document.addEventListener("SetFilesNeeded", (e) => {
@@ -159,7 +161,16 @@
 				});
 
 				document.addEventListener("SetStatusChanged", (e) => {
-					Spam( e.detail.status );
+					let status = ParseStatusString(e.detail.status)
+					if (status.workshopName) {
+						document.dispatchEvent(new CustomEvent('DownloadingFile', {
+							detail: {
+								fileName: status.workshopName + ".wlo"
+							}
+						}));
+					} else {
+						Spam( "yam:" + e.detail.status );
+					}
 				});
 
 				if (STATE.simulate) {
@@ -170,7 +181,7 @@
 					/**
 					 * @param {FloatingFile} value
 					 */
-					STATE.files.forEach((value, index, array) => {
+					STATE.files.forEach((value) => {
 						value.Think();
 					})
 				}, 0.1);

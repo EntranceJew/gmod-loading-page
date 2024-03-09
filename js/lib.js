@@ -55,24 +55,40 @@ export function PickRandomProperty(obj) {
             result = prop;
         }
     }
-    if (result === "dbg"){ result = "generic"; }
+    if (result === "dbg") {
+        result = "generic";
+    }
     return result;
+}
+
+export function ParseStatusString(str) {
+    let workshop = str.match(/(\d+)\/(\d+) \(([\d.]+) (\S+)\) - (Loading '(.*(?=')|.*)|.*)/)
+    if (workshop) {
+        return {
+            currentWorkshopFile: workshop[1],
+            totalWorkshopFiles: workshop[2],
+            size: workshop[3],
+            sizeUnits: workshop[4],
+            status: workshop[5],
+            workshopName: workshop[6],
+        }
+    }
 }
 
 export function GetCurrentTime() {
     return new Date().getTime() / 1000;
 }
 
-export function GetExtension(str, n) {
-    return str.substring(str.lastIndexOf('.')+1, str.length) || "generic"
+export function GetExtension(str) {
+    return str.substring(str.lastIndexOf('.') + 1, str.length) || "generic"
 }
 
-export function clamp( val, min, max ) {
-    return Math.min( Math.max( val, min ), max );
+export function clamp(val, min, max) {
+    return Math.min(Math.max(val, min), max);
 }
 
-export function lerp( alpha, a, b ) {
-    return a + alpha * ( b - a );
+export function lerp(alpha, a, b) {
+    return a + alpha * (b - a);
 }
 
 export function ClampLerp(alpha, a, b) {

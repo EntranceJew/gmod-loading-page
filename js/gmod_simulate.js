@@ -6,6 +6,21 @@ const DATA = {
     changeExtTime: 0,
 };
 
+const event_order = [
+    '@GameDetails',
+    '@SetFilesNeeded',
+    '@SetFilesTotal',
+    '1/171 (0 B) - Fetching info about workshop addons...',
+    '@SetFilesNeeded',
+    '@SetFilesTotal',
+    '1/171 (826.9 MB) - Loading \'[TTT] Boomerang\'',
+    'Mounting Addons',
+    'Workshop Complete',
+    'Sending client info...',
+    'Client info sent!',
+    'Requesting 3 Lua files from the server...',
+]
+
 const str_random_v2 = function (length) {
     let text = "";
     const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -21,7 +36,7 @@ const str_random_v2 = function (length) {
     return text;
 };
 
-export function IsGmod(){
+export function IsGmod() {
     return navigator.userAgent.toLowerCase().indexOf('valve') !== -1;
 }
 
@@ -73,6 +88,7 @@ export function WrapGmodEvents() {
         }));
     };
 }
+
 export function SimulateDownload() {
     SetFilesNeeded(Math.floor(Math.random() * 150) + 75);
     GameDetails('gmodload', window.location.href, 'gm_construct', 24, '76561197960287930', 'sandbox', Math.floor(Math.random() * 100) + 1, 'en', 'Sandbox');
@@ -88,11 +104,9 @@ export function SimulateDownload() {
 
         let time = GetCurrentTime();
         if (DATA.changeExtTime < time) {
-            DATA.changeExtTime = time + (lerp(Math.random(), 700, 1400)/10000);
+            DATA.changeExtTime = time + (lerp(Math.random(), 700, 1400) / 10000);
             DownloadingFile('example/folder/file-' + str_random_v2() + '.' + extension);
         }
-
-
 
 
         /*
