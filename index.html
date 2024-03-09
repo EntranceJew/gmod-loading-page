@@ -144,7 +144,7 @@
 					let float = new FloatingFile(e.detail.fileName, CONFIG);
 					console.log(float.imageUri);
 					STATE.files.push(float);
-					Spam( e.detail.fileName, `${float.imageUri}` );
+					Spam( e.detail.fileName, float.imageUri );
 
 					if (!STATE.simulate && (STATE.needed <= 0 || STATE.downloaded >= STATE.needed)) {
 						console.log('wacky state', STATE.needed, STATE.downloaded)
@@ -163,14 +163,23 @@
 
 				document.addEventListener("SetStatusChanged", (e) => {
 					let status = ParseStatusString(e.detail.status)
-					if (status.workshopName) {
-						document.dispatchEvent(new CustomEvent('DownloadingFile', {
-							detail: {
-								fileName: status.workshopName + ".wlo"
-							}
-						}));
+					status.workshopState = undefined;
+					if (!status) {
+						Spam("unhandled:" + e.detail.status);
 					} else {
-						Spam( "yam:" + e.detail.status );
+						if (status.workshopName && status.workshopState === "Loading" ) {
+							document.dispatchEvent(new CustomEvent('DownloadingFile', {
+								detail: {
+									fileName: status.workshopName + ".wlo"
+								}
+							}));
+						} else if (status.workshopName && status.workshopState === "Extracting" ) {
+							document.dispatchEvent(new CustomEvent('DownloadingFile', {
+								detail: {
+									fileName: status.workshopName + ".wle"
+								}
+							}));
+						}
 					}
 				});
 

@@ -25,7 +25,8 @@ export const file_map = {
     db: "database.png",
 
     wlo: "package.png", // Fake extension for Workshop Loading
-    wdo: "package_go.png", // Fake extension for Workshop Downloading
+    wle: "package_go.png", // Fake extension for Workshop Extracting
+    wdo: "package_add.png", // Fake extension for Workshop Downloading
 
     generic: "bug.png",
 
@@ -64,20 +65,24 @@ export function PickRandomProperty(obj) {
 /**
  *
  * @param str
- * @returns {{totalWorkshopFiles: *, sizeUnits: *, size: *, workshopName: *, currentWorkshopFile: *, status: *}|null}
- * @constructor
  */
 export function ParseStatusString(str) {
-    let workshop = str.match(/(\d+)\/(\d+) \(([\d.]+) (\S+)\) - (Loading '(.*(?=')|.*)|.*)/)
+    let statusObject = {};
+    let workshop = str.match(/(\d+)\/(\d+) \(([\d.]+) (\S+)\) - (.*)/)
     if (workshop) {
-        return {
-            currentWorkshopFile: workshop[1],
-            totalWorkshopFiles: workshop[2],
-            size: workshop[3],
-            sizeUnits: workshop[4],
-            status: workshop[5],
-            workshopName: workshop[6],
+        statusObject.currentWorkshopFile = workshop[1];
+        statusObject.totalWorkshopFiles = workshop[2];
+        statusObject.size = workshop[3];
+        statusObject.sizeUnits = workshop[4];
+        statusObject.status = workshop[5];
+
+        let workshopStatus = statusObject.status.match(/((Loading|Extracting) '(.*(?=')|.*)'?|.*)/)
+        if (workshopStatus) {
+            statusObject.workshopState = workshopStatus[2];
+            statusObject.workshopName = workshopStatus[3];
         }
+
+        return statusObject;
     }
     return null;
 }
