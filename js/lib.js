@@ -61,6 +61,12 @@ export function PickRandomProperty(obj) {
     return result;
 }
 
+/**
+ *
+ * @param str
+ * @returns {{totalWorkshopFiles: *, sizeUnits: *, size: *, workshopName: *, currentWorkshopFile: *, status: *}|null}
+ * @constructor
+ */
 export function ParseStatusString(str) {
     let workshop = str.match(/(\d+)\/(\d+) \(([\d.]+) (\S+)\) - (Loading '(.*(?=')|.*)|.*)/)
     if (workshop) {
@@ -73,6 +79,7 @@ export function ParseStatusString(str) {
             workshopName: workshop[6],
         }
     }
+    return null;
 }
 
 export function GetCurrentTime() {
