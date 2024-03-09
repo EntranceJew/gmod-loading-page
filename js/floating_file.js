@@ -7,7 +7,7 @@ export class FloatingFile {
         this.filename = filename;
         this.hostElement = CONFIG.FLOATING_FILE_ELEMENT;
         this.extension = GetExtension(filename);
-        this.icon = CONFIG.FILE_MAP[this.extension];
+        this.icon = CONFIG.FILE_MAP[this.extension] || null;
         this.imageRoot = CONFIG.ICON_ROOT || "/";
         this.height = CONFIG.ICONS_HEIGHT;
         this.width = CONFIG.ICONS_WIDTH;
@@ -41,7 +41,7 @@ export class FloatingFile {
     }
 
     Attach() {
-        let img = `<img class="floating-icon-file" alt="${this.filename}" src="${this.imageRoot}${this.icon}.png" \>`;
+        let img = `<img class="floating-icon-file" alt="${this.filename}" src="${this.imageRoot}${this.icon}" \>`;
         let accessory = "";
         if (this.isEasterEgg){
             accessory = `<img class="easter-egg easter-egg-${this.easterEggType}" alt="${this.easterEggType}" src="${this.imageRoot}${this.easterEggType}.png" \>`

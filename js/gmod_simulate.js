@@ -6,6 +6,7 @@ const DATA = {
     changeExtTime: 0,
 };
 
+// noinspection JSUnusedLocalSymbols
 const event_order = [
     '@GameDetails',
     '@SetFilesNeeded',
@@ -19,6 +20,11 @@ const event_order = [
     'Sending client info...',
     'Client info sent!',
     'Requesting 3 Lua files from the server...',
+    'Downloaded 1 of 694 Lua files',
+    'Received all Lua files we needed!',
+    'Starting Lua...',
+    'Lua Started!',
+    'Fully connected!',
 ]
 
 const str_random_v2 = function (length) {

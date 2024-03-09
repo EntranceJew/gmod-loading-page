@@ -163,7 +163,7 @@
 				document.addEventListener("SetStatusChanged", (e) => {
 					let status = ParseStatusString(e.detail.status)
 					if (!status) {
-						Spam("unhandled:" + e.detail.status);
+						Spam(`unhandled: ${e.detail.status}`);
 					} else {
 						if (status.workshopName && status.workshopState === "Loading" ) {
 							document.dispatchEvent(new CustomEvent('DownloadingFile', {
