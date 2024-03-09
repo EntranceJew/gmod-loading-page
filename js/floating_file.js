@@ -12,7 +12,6 @@ export class FloatingFile {
         this.height = CONFIG.ICONS_HEIGHT;
         this.width = CONFIG.ICONS_WIDTH;
         this.DetermineEasterEggType();
-        this.imageUri = `${this.imageRoot}${this.icon}`
 
         this.distance = (2*(Math.random() - 0.5));
         this.speed = 50 * (1 - Math.random() * 0.5);
@@ -42,7 +41,7 @@ export class FloatingFile {
     }
 
     Attach() {
-        let img = `<img class="floating-icon-file" alt="${this.filename}" src="${this.imageUri}" \>`;
+        let img = `<img class="floating-icon-file" alt="${this.filename}" src="${this.imageRoot}${this.icon}.png" \>`;
         let accessory = "";
         if (this.isEasterEgg){
             accessory = `<img class="easter-egg easter-egg-${this.easterEggType}" alt="${this.easterEggType}" src="${this.imageRoot}${this.easterEggType}.png" \>`
@@ -81,7 +80,7 @@ export class FloatingFile {
         //     }
         // }
 
-        this.elements.forEach((value, index, array) => {
+        this.elements.forEach((value) => {
             value.style.setProperty('margin-top', `${this.realY}px`);
             value.style.setProperty('margin-left', `${this.realX}px`);
         })
@@ -96,7 +95,7 @@ export class FloatingFile {
     }
 
     Destroy() {
-        this.elements.forEach((value, index, array) => {
+        this.elements.forEach((value) => {
             value.remove();
         });
         // if (this.isEasterEgg && this.iconEasterEggElement) {

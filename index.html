@@ -74,7 +74,7 @@
 				console.log(`spam: ${text}`);
 				STATE.messages.push({
 					text: text,
-					icon: icon ? icon : `${CONFIG.ICON_ROOT}information.png`,
+					icon: icon ? `${CONFIG.ICON_ROOT}${icon}` : `${CONFIG.ICON_ROOT}information.png`,
 				},);
 
 				let str = "";
@@ -142,9 +142,8 @@
 				document.addEventListener("DownloadingFile", (e) => {
 					STATE.downloaded++;
 					let float = new FloatingFile(e.detail.fileName, CONFIG);
-					console.log(float.imageUri);
 					STATE.files.push(float);
-					Spam( e.detail.fileName, float.imageUri );
+					Spam( e.detail.fileName, float.icon );
 
 					if (!STATE.simulate && (STATE.needed <= 0 || STATE.downloaded >= STATE.needed)) {
 						console.log('wacky state', STATE.needed, STATE.downloaded)
@@ -163,7 +162,6 @@
 
 				document.addEventListener("SetStatusChanged", (e) => {
 					let status = ParseStatusString(e.detail.status)
-					status.workshopState = undefined;
 					if (!status) {
 						Spam("unhandled:" + e.detail.status);
 					} else {
