@@ -39,7 +39,7 @@
 		<script type="module" src="./js/gmod_simulate.js"></script>
 		<script type="module">
 			import { WrapGmodEvents, SimulateDownload, IsGmod } from "./js/gmod_simulate.js";
-			import { file_map } from "./js/lib.js";
+			import { file_map, ParseStatusString } from "./js/lib.js";
 			import { FloatingFile } from "./js/floating_file.js";
 
 			const today = new Date();
@@ -142,6 +142,7 @@
 				document.addEventListener("DownloadingFile", (e) => {
 					STATE.downloaded++;
 					let float = new FloatingFile(e.detail.fileName, CONFIG);
+					console.log(float.imageUri);
 					STATE.files.push(float);
 					Spam( e.detail.fileName, `${float.imageUri}` );
 
