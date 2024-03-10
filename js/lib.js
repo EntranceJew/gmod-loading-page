@@ -131,7 +131,9 @@ function SHA1(msg) {
         }
         temp += str;
     }
-    return temp.toLowerCase();
+    temp = temp.toLowerCase();
+    if ( temp.charAt(0) === '-' ) temp = temp.substring(1);
+    return temp;
 }
 
 export function FromHTML(html, trim = true) {

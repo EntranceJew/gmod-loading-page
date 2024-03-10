@@ -67,14 +67,13 @@
 				history: [],
 			}
 
-			// function Spam(dat){
-			// 	document.getElementById("loading-messages").prepend(...FromHTML(`<span>${dat}</span>`));
-			// }
 			window.Spam = function(text, icon) {
-				console.log(`spam: ${text}`);
+				icon = icon ? `${CONFIG.ICON_ROOT}${icon}` : `${CONFIG.ICON_ROOT}information.png`
+				// console.log(`spam: ${text}`);
+				console.log(`spam: ${text}, icon: ${icon}`);
 				STATE.messages.push({
 					text: text,
-					icon: icon ? `${CONFIG.ICON_ROOT}${icon}` : `${CONFIG.ICON_ROOT}information.png`,
+					icon: icon,
 				},);
 
 				let str = "";
@@ -143,7 +142,8 @@
 					STATE.downloaded++;
 					let float = new FloatingFile(e.detail.fileName, CONFIG);
 					STATE.files.push(float);
-					Spam( e.detail.fileName, float.icon );
+
+					Spam( `DownloadingFile ${e.detail.fileName}`, float.icon );
 
 					if (!STATE.simulate && (STATE.needed <= 0 || STATE.downloaded >= STATE.needed)) {
 						console.log('wacky state', STATE.needed, STATE.downloaded)
@@ -178,6 +178,8 @@
 										fileName: status.workshopName + ".wle"
 									}
 								}));
+							} else {
+								Spam(`unhandledWorkshopType: ${e.detail.status}`);
 							}
 						} else if (status.type === "luaDownload") {
 							document.dispatchEvent(new CustomEvent('DownloadingFile', {
@@ -185,6 +187,8 @@
 									fileName: status.fakeLuaFileName
 								}
 							}));
+						} else {
+							Spam(`unhandledType: ${e.detail.status}`);
 						}
 					}
 				});
