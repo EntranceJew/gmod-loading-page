@@ -7,7 +7,7 @@ export class FloatingFile {
         this.filename = filename;
         this.hostElement = CONFIG.FLOATING_FILE_ELEMENT;
         this.extension = GetExtension(filename);
-        this.icon = CONFIG.FILE_MAP[this.extension] || null;
+        this.icon = CONFIG.FILE_MAP[this.extension];
         this.imageRoot = CONFIG.ICON_ROOT || "/";
         this.height = CONFIG.ICONS_HEIGHT;
         this.width = CONFIG.ICONS_WIDTH;

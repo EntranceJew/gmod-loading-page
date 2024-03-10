@@ -187,7 +187,7 @@ export function ParseStatusString(str) {
         return statusObject;
     }
 
-    let luaDownload = statusObject.status.match(/Downloaded (\d+) of (\d+) Lua files/)
+    let luaDownload = str.match(/Downloaded (\d+) of (\d+) Lua files/)
     if (luaDownload) {
         statusObject.type = "luaDownload";
         statusObject.currentLuaFile = luaDownload[1];
@@ -216,7 +216,8 @@ export function GetCurrentTime() {
 }
 
 export function GetExtension(str) {
-    return str.substring(str.lastIndexOf('.') + 1, str.length) || "generic"
+    const out = str.substring(str.lastIndexOf('.') + 1, str.length);
+    return out === str ? "generic" : out;
 }
 
 export function clamp(val, min, max) {
