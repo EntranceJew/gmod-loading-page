@@ -165,16 +165,24 @@
 					if (!status) {
 						Spam(`unhandled: ${e.detail.status}`);
 					} else {
-						if (status.workshopName && status.workshopState === "Loading" ) {
+						if (status.type === "workshop") {
+							if (status.workshopState === "Loading") {
+								document.dispatchEvent(new CustomEvent('DownloadingFile', {
+									detail: {
+										fileName: status.workshopName + ".wlo"
+									}
+								}));
+							} else if (status.workshopState === "Extracting") {
+								document.dispatchEvent(new CustomEvent('DownloadingFile', {
+									detail: {
+										fileName: status.workshopName + ".wle"
+									}
+								}));
+							}
+						} else if (status.type === "luaDownload") {
 							document.dispatchEvent(new CustomEvent('DownloadingFile', {
 								detail: {
-									fileName: status.workshopName + ".wlo"
-								}
-							}));
-						} else if (status.workshopName && status.workshopState === "Extracting" ) {
-							document.dispatchEvent(new CustomEvent('DownloadingFile', {
-								detail: {
-									fileName: status.workshopName + ".wle"
+									fileName: status.fakeLuaFileName
 								}
 							}));
 						}
