@@ -7,6 +7,8 @@ export const file_map = {
     mp3: "sound.png",
     ogg: "sound.png",
 
+    lua: "script_code.png",
+
     txt: "page_white_text.png",
     htm: "page_white_world.png",
     tml: "page_white_world.png", // html
